@@ -5,10 +5,18 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import net.fjcode.titles.Titles;
+import net.fjcode.titles.menus.TitleSelectorMenu;
 import net.fjcode.titles.util.ChatUtil;
-import net.fjcode.titles.util.TitleUtil;
 
 public class TitleCommand implements CommandExecutor {
+	
+	private Titles instance;
+	public TitleCommand(Titles instance) {
+		this.instance = instance;
+		
+		instance.getCommand("title").setExecutor(this);
+	}
 	
 	@Override
 	public boolean onCommand(CommandSender cs, Command c, String s, String[] args) {
@@ -18,19 +26,12 @@ public class TitleCommand implements CommandExecutor {
 		
 		Player p = (Player) cs;
 		
-		if (args.length != 1) {
-			ChatUtil.info(p, "Syntax: /title <title>");
+		if (!p.hasPermission("titles.title")) {
+			ChatUtil.info(p, "You do not have permission for that command.");
 			return true;
 		}
 		
-		String title = args[0].toLowerCase();
-		
-		if (!TitleUtil.userHasPerm(p, title)) {
-			ChatUtil.info(p, "You do not have access to that title.");
-			return true;
-		}
-		
-		TitleUtil.applyTitle(p, title);
+		TitleSelectorMenu.INVENTORY.open(p);
 		
 		return false;
 	}

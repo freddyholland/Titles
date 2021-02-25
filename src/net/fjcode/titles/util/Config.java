@@ -3,6 +3,8 @@ package net.fjcode.titles.util;
 import java.util.Arrays;
 import java.util.List;
 
+import org.bukkit.ChatColor;
+
 import net.fjcode.titles.Titles;
 
 public class Config {
@@ -18,7 +20,10 @@ public class Config {
 	}
 	
 	public static String getPrefix() {
-		return "Titles >>";
+		if (instance.getConfig().contains("prefix")) {
+			return ChatColor.translateAlternateColorCodes('&', instance.getConfig().getString("prefix"));
+		}
+		return ChatColor.AQUA + "Titles" + ChatColor.GREEN + " >>" + ChatColor.RESET;
 	}
 	
 	// Individual user configuration.
@@ -48,10 +53,10 @@ public class Config {
 	}
 	
 	public static List<String> getUserTitles(String p) {
-		if (instance.getConfig().contains("titles." + p + ".available"))
-			return instance.getConfig().getStringList("titles." + p + ".available");
+		//if (instance.getConfig().contains("titles." + p + ".available"))
+		//	return instance.getConfig().getStringList("titles." + p + ".available");
 		
-		return Arrays.asList();
+		return Arrays.asList("Founder", "###", "<3");
 	}
 	
 }

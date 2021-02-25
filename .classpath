@@ -3,5 +3,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="C:/Users/fholl/Documents/Dev/Java/Libraries/spigot-1.16.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fholl/Documents/Dev/Java/Libraries/Vault.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fholl/Documents/Games/Minecraft/Servers/1.16.5/plugins/SmartInvs-1.2.7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
