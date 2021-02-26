@@ -26,7 +26,7 @@ public class TitleCommand implements CommandExecutor {
 		
 		Player p = (Player) cs;
 		
-		if (!p.hasPermission("titles.title")) {
+		if (!p.hasPermission("title.select")) {
 			ChatUtil.info(p, "You do not have permission for that command.");
 			return true;
 		}

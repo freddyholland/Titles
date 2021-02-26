@@ -28,7 +28,7 @@ public class TitleSelectorMenu implements InventoryProvider {
 	@Override
 	public void init(Player p, InventoryContents contents) {
 		
-		List<String> titles = Config.getUserTitles(p.getUniqueId().toString());
+		List<String> titles = Config.getUserTitles(p);
 		
 		for (String title : titles) {
 			 contents.add(ClickableItem.of(

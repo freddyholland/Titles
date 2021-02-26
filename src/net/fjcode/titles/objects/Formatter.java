@@ -34,11 +34,6 @@ public class Formatter {
 		if (!sequence.isEmpty() && sequence.size() == title.length())
 			return;
 		
-		if (!p.hasPermission("titles.formatting." + formattingOption)) {
-			ChatUtil.info(p, "You do not have access to use &" + formattingOption);
-			return;
-		}
-		
 		sequence.add(formattingOption);
 	}
 	

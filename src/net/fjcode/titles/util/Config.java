@@ -1,9 +1,11 @@
 package net.fjcode.titles.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 
 import net.fjcode.titles.Titles;
 
@@ -16,6 +18,8 @@ public class Config {
 	}
 	
 	public static List<String> getAvailableTitles() {
+		if (instance.getConfig().contains("titles"))
+			return instance.getConfig().getStringList("titles");
 		return Arrays.asList("one", "two", "three");
 	}
 	
@@ -28,35 +32,15 @@ public class Config {
 	
 	// Individual user configuration.
 	
-	public static String getTitle(String p) {
-		if (instance.getConfig().contains("titles." + p + ".title"))
-			return instance.getConfig().getString("titles." + p);
+	public static List<String> getUserTitles(Player p) {
+		ArrayList<String> userTitles = new ArrayList<String>();
+		for (String title : getAvailableTitles()) {
+			if (p.hasPermission("titles." + title)) {
+				userTitles.add(title);
+			}
+		}
 		
-		return "";
-	}
-	
-	public static List<String> getFormatting(String p) {
-		if (instance.getConfig().contains("titles." + p + ".formatting"))
-			return instance.getConfig().getStringList("titles." + p + ".formatting");
-		
-		return Arrays.asList();
-	}
-	
-	public static void setTitle(String p, String title) {
-		instance.getConfig().set("titles." + p + ".title", title);
-		instance.saveConfig();
-	}
-	
-	public static void setFormatting(String p, List<String> formatting) {
-		instance.getConfig().set("titles." + p + ".formatting", formatting);
-		instance.saveConfig();
-	}
-	
-	public static List<String> getUserTitles(String p) {
-		//if (instance.getConfig().contains("titles." + p + ".available"))
-		//	return instance.getConfig().getStringList("titles." + p + ".available");
-		
-		return Arrays.asList("Founder", "###", "<3");
+		return userTitles;
 	}
 	
 }
